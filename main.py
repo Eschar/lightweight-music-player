@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 print("Importing pygame multimedia library...")
 import pygame
-print("Importing os and subprocess libraries...")
-import os, subprocess
-os.system("cls")
+print("Importing sys and subprocess libraries...")
+import subprocess, sys
 state = {"mode":"main"}
 
 def get_song_filenames():
-    #return subprocess.check_output(["dir", os.path.join(os.path.dirname(__file__), "music")], shell=True).decode("utf-8").split("\n")
     return os.listdir(os.path.join(os.path.dirname(__file__), "music"))
 
 def get_mdir_path():
@@ -19,10 +17,10 @@ if not os.path.isdir(os.path.join(os.path.dirname(__file__), "music")):
 
 while True:
     if state["mode"] == "main":
-        command = input("[O]pen a piece\n[L]ist pieces\n> ")
-        if command.strip().lower() == "o":
+        command = input("[O]pen a piece\n[L]ist pieces\n[E]xit\n> ")
+        if command.strip().lower() in ["o", "open"]:
             state = {"mode":"select_song"}
-        elif command.strip().lower() == "l":
+        elif command.strip().lower() in ["l", "list"]:
             song_filenames = get_song_filenames()
             if len(song_filenames) > 0:
                 print("Music:")
@@ -30,8 +28,10 @@ while True:
                     print(song_filename)
             else:
                 print("You have no music.")
+        elif command.strip().lower() in ["e", "exit"]:
+            sys.exit()
         else:
-            print("Please enter 'o' or 'l.'")
+            print("Please enter 'o,' 'l' or 'e.'")
 
     elif state["mode"] == "select_song":
         if len(get_song_filenames()) > 0:
