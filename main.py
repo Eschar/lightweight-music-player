@@ -11,9 +11,6 @@ def get_song_filenames():
 def get_mdir_path():
     return os.path.join(os.path.dirname(__file__), "music")
 
-def close_pygame():
-    
-
 if not os.path.isdir(os.path.join(os.path.dirname(__file__), "music")):
     print("No music directory entry found. Empty directory created.")
     os.makedirs(os.path.join(os.path.dirname(__file__), "music"))
