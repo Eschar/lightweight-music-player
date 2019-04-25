@@ -2,7 +2,7 @@
 print("Importing pygame multimedia library...")
 import pygame
 print("Importing sys and subprocess libraries...")
-import subprocess, sys
+import subprocess, sys, os
 state = {"mode":"main"}
 
 def get_song_filenames():
